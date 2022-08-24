@@ -18,3 +18,7 @@
 .gif img {
     object-fit: contain;
 }
+
+p {
+    font-size: 80px;
+}

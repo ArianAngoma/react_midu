@@ -1,4 +1,4 @@
-import {Route} from "wouter";
+import {Link, Route} from "wouter";
 import './App.css';
 
 import {ListOfGifs} from "./components/ListOfGifs";
@@ -12,11 +12,11 @@ function App() {
 
                 <h1>App</h1>
 
-                <a href="/gif/panda">Gifs de pandas</a>
+                <Link to="/gif/panda">Gifs de pandas</Link>
 
-                <a href="/gif/peru">Gifs de peru</a>
+                <Link to="/gif/peru">Gifs de peru</Link>
 
-                <a href="/gif/rick">Gifs de rick</a>
+                <Link to="/gif/rick">Gifs de rick</Link>
 
                 <Route
                     path="/gif/:keyword"
