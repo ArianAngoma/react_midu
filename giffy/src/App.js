@@ -1,8 +1,9 @@
 import {Link, Route} from "wouter";
 import './App.css';
 
-import {ListOfGifs} from "./components/ListOfGifs";
-
+import {SearchResults} from "./pages/SearchResults";
+import {Detail} from "./pages/Detail";
+import {Home} from "./pages/Home";
 
 function App() {
 
@@ -10,17 +11,27 @@ function App() {
         <div className="App">
             <section className="App-content">
 
-                <h1>App</h1>
-
-                <Link to="/gif/panda">Gifs de pandas</Link>
-
-                <Link to="/gif/peru">Gifs de peru</Link>
-
-                <Link to="/gif/rick">Gifs de rick</Link>
+                <Link to="/">
+                    <img
+                        src="https://giphy.com/static/img/about/stickers/logo-spin.gif"
+                        alt="logo"
+                        className="App-logo"
+                    />
+                </Link>
 
                 <Route
-                    path="/gif/:keyword"
-                    component={ListOfGifs}
+                    component={Home}
+                    path="/"
+                />
+
+                <Route
+                    component={SearchResults}
+                    path="/search/:keyword"
+                />
+
+                <Route
+                    component={Detail}
+                    path="/gif/:id"
                 />
 
             </section>
