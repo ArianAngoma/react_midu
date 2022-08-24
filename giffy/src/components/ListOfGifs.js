@@ -3,7 +3,9 @@ import {useEffect, useState} from "react";
 import {getGifts} from "../services/getGifs";
 import {Gif} from "./Gif";
 
-export const ListOfGifs = ({keyword}) => {
+export const ListOfGifs = ({params}) => {
+    const {keyword} = params
+
     const [gifs, setGifs] = useState([]);
 
     useEffect(() => {
@@ -11,12 +13,18 @@ export const ListOfGifs = ({keyword}) => {
         getGifts({keyword}).then(gifs => setGifs(gifs));
     }, [keyword]);
 
-    return gifs.map(({id, title, url}) => <Gif
-            key={id}
-            id={id}
-            title={title}
-            url={url}
-        />
+    return (
+        <>
+            {
+                gifs.map(({id, title, url}) => <Gif
+                    key={id}
+                    id={id}
+                    title={title}
+                    url={url}
+                />)
+
+            }
+        </>
     )
 
 }

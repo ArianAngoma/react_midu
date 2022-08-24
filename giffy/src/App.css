@@ -24,3 +24,8 @@ button {
     color: white;
     cursor: pointer;
 }
+
+a {
+    color: #09f;
+    font-size: 32px;
+}
