@@ -18,7 +18,6 @@ export const ListOfGifs = ({params}) => {
         setGifs((prevState) => ({...prevState, loading: true}));
 
         getGifts({keyword}).then(gifs => {
-            setGifs(gifs)
             setGifs((prevState) => ({...prevState, loading: false, results: gifs}));
         });
     }, [keyword]);
