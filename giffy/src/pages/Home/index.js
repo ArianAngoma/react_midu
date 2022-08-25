@@ -1,5 +1,7 @@
 import {useState} from "react";
 import {Link, useLocation} from "wouter";
+import {useGifs} from "../../hooks/useGifs";
+import {ListOfGifs} from "../../components/ListOfGifs/ListOfGifs";
 
 const POPULAR_GIFS = ['Perú', 'JavaScript', 'Node.js', 'MongoDB'];
 
@@ -8,7 +10,7 @@ export const Home = () => {
 
     const [path, pushLocation] = useLocation();
 
-    console.log(path)
+    const {loading, gifs} = useGifs();
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -36,6 +38,12 @@ export const Home = () => {
                 <button>Buscar</button>
 
             </form>
+
+            <h3 className="App-title">
+                Los gifs más recientes
+            </h3>
+
+            <ListOfGifs gifs={gifs}/>
 
             <h3 className="App-title">
                 Los gifs más populares
