@@ -4,38 +4,49 @@ import './App.css';
 import {SearchResults} from "./pages/SearchResults";
 import {Detail} from "./pages/Detail";
 import {Home} from "./pages/Home";
+import {Context} from "./context/StaticContext";
+import {GifsContextProvider} from "./context/GifsContext";
 
 function App() {
 
     return (
-        <div className="App">
-            <section className="App-content">
+        <Context.Provider value={{
+            name: 'Arian',
+            isHuman: true,
+        }}>
+            <div className="App">
+                <section className="App-content">
 
-                <Link to="/">
-                    <img
-                        src="https://giphy.com/static/img/about/stickers/logo-spin.gif"
-                        alt="logo"
-                        className="App-logo"
-                    />
-                </Link>
+                    <Link to="/">
+                        <img
+                            src="https://giphy.com/static/img/about/stickers/logo-spin.gif"
+                            alt="logo"
+                            className="App-logo"
+                        />
+                    </Link>
 
-                <Route
-                    component={Home}
-                    path="/"
-                />
+                    <GifsContextProvider>
 
-                <Route
-                    component={SearchResults}
-                    path="/search/:keyword"
-                />
+                        <Route
+                            component={Home}
+                            path="/"
+                        />
 
-                <Route
-                    component={Detail}
-                    path="/gif/:id"
-                />
+                        <Route
+                            component={SearchResults}
+                            path="/search/:keyword"
+                        />
 
-            </section>
-        </div>
+                        <Route
+                            component={Detail}
+                            path="/gif/:id"
+                        />
+
+                    </GifsContextProvider>
+
+                </section>
+            </div>
+        </Context.Provider>
     );
 }
 
