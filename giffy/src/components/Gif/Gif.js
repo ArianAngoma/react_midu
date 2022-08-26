@@ -10,7 +10,7 @@ export const Gif = ({title, id, url}) => {
             >
 
                 <h4>{title}</h4>
-                <img src={url} alt={title}/>
+                <img src={url} alt={title} loading="lazy"/>
 
             </Link>
         </div>
