@@ -1,5 +1,4 @@
-
-import {Gif} from "../../components/Gif/Gif";
+import {Gif} from "../../components/Gif";
 import {useGlobalGifs} from "../../hooks/useGlobalGifs";
 
 export const Detail = ({params}) => {
@@ -10,6 +9,9 @@ export const Detail = ({params}) => {
     console.log(gif)
 
     return (
-        <Gif id={gif.id} url={gif.url} title={gif.title}/>
+        <>
+            <h3 className="App-title">{gif.title}</h3>
+            <Gif id={gif.id} url={gif.url} title={gif.title}/>
+        </>
     )
 }

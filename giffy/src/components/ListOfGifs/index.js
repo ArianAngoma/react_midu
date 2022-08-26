@@ -1,6 +1,6 @@
 import './styles.css'
 
-import {Gif} from "../Gif/Gif";
+import {Gif} from "../Gif";
 
 export const ListOfGifs = ({gifs}) => {
     return (

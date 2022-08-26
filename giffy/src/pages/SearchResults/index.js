@@ -1,6 +1,6 @@
-import {Spinner} from "../../components/Spinner/Spinner";
-import {ListOfGifs} from "../../components/ListOfGifs/ListOfGifs";
+import {Spinner} from "../../components/Spinner";
 import {useGifs} from "../../hooks/useGifs";
+import {ListOfGifs} from "../../components/ListOfGifs";
 
 export const SearchResults = ({params}) => {
     const {keyword} = params;
@@ -12,7 +12,12 @@ export const SearchResults = ({params}) => {
             {
                 loading
                     ? <Spinner/>
-                    : <ListOfGifs gifs={gifs}/>
+                    : (
+                        <>
+                            <h3 className="Aoo-title">{keyword}</h3>
+                            <ListOfGifs gifs={gifs}/>
+                        </>
+                    )
             }
         </>
     )

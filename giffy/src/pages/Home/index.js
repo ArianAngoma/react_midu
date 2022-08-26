@@ -1,7 +1,8 @@
 import {useState} from "react";
-import {Link, useLocation} from "wouter";
+import {useLocation} from "wouter";
 import {useGifs} from "../../hooks/useGifs";
-import {ListOfGifs} from "../../components/ListOfGifs/ListOfGifs";
+import {ListOfGifs} from "../../components/ListOfGifs";
+import {Category} from "../../components/Category";
 
 const POPULAR_GIFS = ['Perú', 'JavaScript', 'Node.js', 'MongoDB'];
 
@@ -27,6 +28,7 @@ export const Home = () => {
     return (
         <>
             <form onSubmit={handleSubmit}>
+                <button>Buscar</button>
 
                 <input
                     type="text"
@@ -35,31 +37,36 @@ export const Home = () => {
                     placeholder="Search..."
                 />
 
-                <button>Buscar</button>
-
             </form>
 
-            <h3 className="App-title">
-                Los gifs más recientes
-            </h3>
+            <div className="App-main">
 
-            <ListOfGifs gifs={gifs}/>
+                <div className="App-results">
 
-            <h3 className="App-title">
-                Los gifs más populares
-            </h3>
+                    <h3 className="App-title">
+                        Los gifs más recientes
+                    </h3>
 
-            <ul>
-                {
-                    POPULAR_GIFS.map((popularGif) => (
-                        <li key={popularGif}>
-                            <Link to={`/search/${popularGif}`}>
-                                Gifs de {popularGif}
-                            </Link>
-                        </li>
-                    ))
-                }
-            </ul>
+                    <ListOfGifs gifs={gifs}/>
+
+                </div>
+
+                <div className="App-category">
+
+                    <Category
+                        name="Categorias populares"
+                        options={POPULAR_GIFS}
+                    />
+
+                    <Category
+                        name="Mascotas"
+                        options={['Perros', 'Gatos', 'Peces', 'Aves']}
+                    />
+
+                </div>
+
+            </div>
+
         </>
     )
 }
