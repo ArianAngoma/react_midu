@@ -2,7 +2,7 @@ import {useState} from "react";
 import {useLocation} from "wouter";
 import {useGifs} from "hooks/useGifs";
 import {ListOfGifs} from "components/ListOfGifs";
-import {TrendingSearches} from "components/TrendingSearches";
+import {LazyTrending} from "components/TrendingSearches";
 
 export const Home = () => {
     const [keyword, setKeyword] = useState('');
@@ -51,7 +51,7 @@ export const Home = () => {
 
                 <div className="App-category">
 
-                    <TrendingSearches/>
+                    <LazyTrending/>
 
                 </div>
 
