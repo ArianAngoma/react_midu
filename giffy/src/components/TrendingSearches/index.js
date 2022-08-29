@@ -1,32 +1,19 @@
-import {useEffect, useState} from "react";
-import {getTrendingTermsService} from "services/getTrendingTermsService";
-import {Category} from "../Category";
+import {lazy, Suspense} from "react";
 import {useNearScreen} from "hooks/useNearScreen";
+import {Spinner} from "../Spinner";
 
-const TrendingSearches = () => {
-    const [trends, setTrends] = useState([]);
-
-    useEffect(() => {
-        getTrendingTermsService().then(setTrends);
-    }, []);
-
-    return (
-        <Category
-            name="Tendencias"
-            options={trends}
-        />
-    )
-}
-
+const TrendingSearches = lazy(() => import('./TrendingSearches'));
 
 export const LazyTrending = () => {
-    const {isNearScreen, fromRef} = useNearScreen({distance: '200px'})
+    const {isNearScreen, fromRef} = useNearScreen({distance: '0px'})
 
     return (
         <div ref={fromRef}>
-            {
-                isNearScreen ? <TrendingSearches /> : null
-            }
+            <Suspense fallback={<Spinner/>}>
+                {
+                    isNearScreen ? <TrendingSearches/> : <Spinner/>
+                }
+            </Suspense>
         </div>
     )
 }
