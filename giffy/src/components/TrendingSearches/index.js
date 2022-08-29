@@ -25,18 +25,24 @@ export const LazyTrending = () => {
     useEffect(() => {
         const onChange = (entries, observer) => {
             const el = entries[0];
-            if (el.isIntersecting) setShow(true);
+            console.log(el.isIntersecting)
+            if (el.isIntersecting) {
+                setShow(true)
+                observer.disconnect();
+            }
         }
 
         const observer = new IntersectionObserver(onChange, {
             rootMargin: '100px'
         })
 
-        observer.observe(document.getElementById('LazyTrending'))
+        observer.observe(elementRef.current);
+
+        return () => observer.disconnect();
     })
 
     return (
-        <div id="LazyTrending">
+        <div ref={elementRef}>
             {
                 show ? <TrendingSearches /> : null
             }
