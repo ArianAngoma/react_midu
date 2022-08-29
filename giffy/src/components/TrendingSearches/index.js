@@ -17,10 +17,9 @@ const TrendingSearches = () => {
     )
 }
 
-export const LazyTrending = () => {
-    const [show, setShow] = useState(false);
-
-    const elementRef = useRef();
+const useNearScreen = ({distance =  '100px'} = {}) => {
+    const [isNearScreen, setShow] = useState(false);
+    const fromRef = useRef()
 
     useEffect(() => {
         let observer
@@ -40,20 +39,26 @@ export const LazyTrending = () => {
                 : import('intersection-observer')
         ).then(() => {
             observer = new IntersectionObserver(onChange, {
-                rootMargin: '100px'
+                rootMargin: distance
             })
 
-            observer.observe(elementRef.current);
+            observer.observe(fromRef.current);
         })
 
 
         return () => observer && observer.disconnect();
     })
 
+    return {isNearScreen, fromRef}
+}
+
+export const LazyTrending = () => {
+    const {isNearScreen, fromRef} = useNearScreen({distance: '200px'})
+
     return (
-        <div ref={elementRef}>
+        <div ref={fromRef}>
             {
-                show ? <TrendingSearches /> : null
+                isNearScreen ? <TrendingSearches /> : null
             }
         </div>
     )
