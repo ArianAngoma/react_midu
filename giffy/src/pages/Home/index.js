@@ -1,8 +1,9 @@
+import {useCallback} from "react";
 import {useLocation} from "wouter";
 import {useGifs} from "hooks/useGifs";
 import {ListOfGifs} from "components/ListOfGifs";
 import {LazyTrending} from "components/TrendingSearches";
-import {SearchForm} from "../../components/SearchForm";
+import SearchForm from "../../components/SearchForm";
 
 export default function Home() {
 
@@ -10,9 +11,9 @@ export default function Home() {
 
     const {loading, gifs} = useGifs();
 
-    const handleSubmit = ({keyword}) => {
+    const handleSubmit = useCallback(({keyword}) => {
         pushLocation(`/search/${keyword}`);
-    }
+    }, [pushLocation]);
 
     return (
         <>
