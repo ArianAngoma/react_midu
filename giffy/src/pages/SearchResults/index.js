@@ -16,14 +16,10 @@ export const SearchResults = ({params}) => {
         once: false
     });
 
-    /*const handleNextPage = () => {
-        setPage(prevPage => prevPage + 1)
-    }*/
-
     // useCallback recibe una función y un array de dependencias
     const debounceHandleNextPage = useCallback(debounce(
         () => setPage(prevPage => prevPage + 1), 200
-    ), [])
+    ), [setPage])
 
     useEffect(() => {
         console.log(isNearScreen)

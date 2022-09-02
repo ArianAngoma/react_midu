@@ -1,8 +1,13 @@
-import { render, screen } from '@testing-library/react';
+import {Suspense} from "react";
+import {render, screen} from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+test('renders without crashing', async () => {
+    render(
+        <Suspense>
+            <App/>
+        </Suspense>
+    );
+    const linkElement = await screen.findByText(/Los gifs más recientes/i);
+    expect(linkElement).toBeInTheDocument();
 });

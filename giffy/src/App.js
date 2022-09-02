@@ -1,11 +1,13 @@
+import {lazy, Suspense} from "react";
 import {Link, Route} from "wouter";
 import './App.css';
 
 import {SearchResults} from "./pages/SearchResults";
 import {Detail} from "./pages/Detail";
-import {Home} from "./pages/Home";
 import {Context} from "./context/StaticContext";
 import {GifsContextProvider} from "./context/GifsContext";
+
+const HomePage = lazy(() => import('./pages/Home'));
 
 function App() {
 
@@ -15,36 +17,41 @@ function App() {
             isHuman: true,
         }}>
             <div className="App">
-                <section className="App-content">
 
-                    <Link to="/">
-                        <img
-                            src="https://giphy.com/static/img/about/stickers/logo-spin.gif"
-                            alt="logo"
-                            className="App-logo"
-                        />
-                    </Link>
+                <Suspense fallback={null}>
 
-                    <GifsContextProvider>
+                    <section className="App-content">
 
-                        <Route
-                            component={Home}
-                            path="/"
-                        />
+                        <Link to="/">
+                            <img
+                                src="https://giphy.com/static/img/about/stickers/logo-spin.gif"
+                                alt="logo"
+                                className="App-logo"
+                            />
+                        </Link>
 
-                        <Route
-                            component={SearchResults}
-                            path="/search/:keyword"
-                        />
+                        <GifsContextProvider>
 
-                        <Route
-                            component={Detail}
-                            path="/gif/:id"
-                        />
+                            <Route
+                                component={HomePage}
+                                path="/"
+                            />
 
-                    </GifsContextProvider>
+                            <Route
+                                component={SearchResults}
+                                path="/search/:keyword"
+                            />
 
-                </section>
+                            <Route
+                                component={Detail}
+                                path="/gif/:id"
+                            />
+
+                        </GifsContextProvider>
+
+                    </section>
+
+                </Suspense>
             </div>
         </Context.Provider>
     );

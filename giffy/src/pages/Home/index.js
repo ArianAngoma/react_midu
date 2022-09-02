@@ -4,7 +4,7 @@ import {useGifs} from "hooks/useGifs";
 import {ListOfGifs} from "components/ListOfGifs";
 import {LazyTrending} from "components/TrendingSearches";
 
-export const Home = () => {
+export default function Home() {
     const [keyword, setKeyword] = useState('');
 
     const [path, pushLocation] = useLocation();
