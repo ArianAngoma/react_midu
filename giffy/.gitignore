@@ -24,3 +24,5 @@ yarn-debug.log*
 # Code Editor
 .vscode
 .idea
+
+.vercel
