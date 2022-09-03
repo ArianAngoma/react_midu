@@ -48,7 +48,7 @@ function App() {
                             />
 
                             <Route
-                                component={() => <h1>404 Error D:</h1>}
+                                component={() => <h1>404 Error</h1>}
                                 path="/404"
                             />
 
