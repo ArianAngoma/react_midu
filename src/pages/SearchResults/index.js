@@ -1,10 +1,13 @@
 import {useCallback, useEffect, useRef} from "react";
-import debounce from "just-debounce-it";
-import {Spinner} from "components/Spinner";
-import {useGifs} from "hooks/useGifs";
-import {ListOfGifs} from "components/ListOfGifs";
-import {useNearScreen} from "hooks/useNearScreen";
 import {Helmet} from "react-helmet";
+import debounce from "just-debounce-it";
+
+import {Spinner} from "components/Spinner";
+import {ListOfGifs} from "components/ListOfGifs";
+import SearchForm from "components/SearchForm";
+
+import {useGifs} from "hooks/useGifs";
+import {useNearScreen} from "hooks/useNearScreen";
 
 export const SearchResults = ({params}) => {
     const {keyword} = params;
@@ -42,6 +45,10 @@ export const SearchResults = ({params}) => {
                                 <meta name="description" content={title}/>
                                 <meta name="rating" content="General"/>
                             </Helmet>
+
+                            <header className="o-header">
+                                <SearchForm/>
+                            </header>
 
                             <div className="App-wrapper">
                                 <h3 className="App-title">

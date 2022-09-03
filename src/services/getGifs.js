@@ -1,7 +1,7 @@
 import {API_KEY, API_URL} from "./settings";
 
 export const getGifs = async ({
-                                  limit = 5,
+                                  limit = 20,
                                   keyword = 'morty',
                                   page = 0
                               } = {}) => {
