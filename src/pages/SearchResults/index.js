@@ -10,9 +10,9 @@ import {useGifs} from "hooks/useGifs";
 import {useNearScreen} from "hooks/useNearScreen";
 
 export const SearchResults = ({params}) => {
-    const {keyword} = params;
+    const {keyword, rating = 'g'} = params;
 
-    const {loading, gifs, setPage} = useGifs({keyword})
+    const {loading, gifs, setPage} = useGifs({keyword, rating});
 
     const externalRef = useRef();
     const {isNearScreen} = useNearScreen({
