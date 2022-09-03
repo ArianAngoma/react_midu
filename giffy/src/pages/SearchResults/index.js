@@ -3,7 +3,8 @@ import debounce from "just-debounce-it";
 import {Spinner} from "components/Spinner";
 import {useGifs} from "hooks/useGifs";
 import {ListOfGifs} from "components/ListOfGifs";
-import {useNearScreen} from "../../hooks/useNearScreen";
+import {useNearScreen} from "hooks/useNearScreen";
+import {Helmet} from "react-helmet";
 
 export const SearchResults = ({params}) => {
     const {keyword} = params;
@@ -15,6 +16,8 @@ export const SearchResults = ({params}) => {
         externalRef: loading ? null : externalRef,
         once: false
     });
+
+    const title = gifs ? `${gifs.length} resultados de ${keyword}` : ''
 
     // useCallback recibe una función y un array de dependencias
     const debounceHandleNextPage = useCallback(debounce(
@@ -34,14 +37,22 @@ export const SearchResults = ({params}) => {
                     ? <Spinner/>
                     : (
                         <>
-                            <h3 className="Aoo-title">
-                                {
-                                    decodeURI(keyword)
-                                }
-                            </h3>
-                            <ListOfGifs gifs={gifs}/>
+                            <Helmet>
+                                <title>{title} | Giffy</title>
+                                <meta name="description" content={title}/>
+                                <meta name="rating" content="General"/>
+                            </Helmet>
 
-                            <div id="visor" ref={externalRef}></div>
+                            <div className="App-wrapper">
+                                <h3 className="App-title">
+                                    {
+                                        decodeURI(keyword)
+                                    }
+                                </h3>
+                                <ListOfGifs gifs={gifs}/>
+
+                                <div id="visor" ref={externalRef}></div>
+                            </div>
                         </>
                     )
             }
