@@ -21,6 +21,7 @@ export default function Home() {
 
             <Helmet>
                 <title>Home | Giffy</title>
+                <link rel="canonical" href="https://giffy-arian.vercel.app/"/>
             </Helmet>
 
             <header className="o-header">
