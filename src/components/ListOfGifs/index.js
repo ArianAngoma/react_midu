@@ -1,13 +1,14 @@
+import {memo} from "react";
 import './styles.css'
 
 import Gif from "../Gif";
 
-export const ListOfGifs = ({gifs}) => {
+function ListOfGifs({gifs}) {
     return (
         <div className="ListOfGifs">
             {
                 gifs.map(({id, title, url, ...restOfGif}) => <Gif
-                    key={id}
+                    key={url}
                     id={id}
                     title={title}
                     url={url}
@@ -19,3 +20,5 @@ export const ListOfGifs = ({gifs}) => {
     )
 
 }
+
+export default memo(ListOfGifs)

@@ -3,7 +3,7 @@ import {Helmet} from "react-helmet";
 import debounce from "just-debounce-it";
 
 import {Spinner} from "components/Spinner";
-import {ListOfGifs} from "components/ListOfGifs";
+import ListOfGifs from "components/ListOfGifs";
 import SearchForm from "components/SearchForm";
 
 import {useGifs} from "hooks/useGifs";
@@ -28,8 +28,6 @@ export const SearchResults = ({params}) => {
     ), [setPage])
 
     useEffect(() => {
-        console.log(isNearScreen)
-
         if (isNearScreen) debounceHandleNextPage()
     }, [isNearScreen, debounceHandleNextPage])
 
@@ -47,7 +45,10 @@ export const SearchResults = ({params}) => {
                             </Helmet>
 
                             <header className="o-header">
-                                <SearchForm/>
+                                <SearchForm
+                                    initialKeyword={keyword}
+                                    initialRating={rating}
+                                />
                             </header>
 
                             <div className="App-wrapper">

@@ -5,20 +5,22 @@ import css from "./styles.module.css";
 
 const RATINGS = ['g', 'pg', 'pg-13', 'r'];
 
-function SearchForm() {
-    const [keyword, setKeyword] = useState('');
-    const [rating, setRating] = useState(RATINGS[0]);
+function SearchForm({initialKeyword = '', initialRating = 'g'}) {
+    const [keyword, setKeyword] = useState(decodeURIComponent(initialKeyword));
+    const [rating, setRating] = useState(initialRating);
+    const [times, setTimes] = useState(0);
 
     const [path, pushLocation] = useLocation();
 
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        pushLocation(`/search/${keyword}/${rating}`);
+        pushLocation(`/search/${keyword || 'giphy'}/${rating}`);
     }
 
     const handleChange = (event) => {
-        setKeyword(event.target.value)
+        setKeyword(event.target.value);
+        setTimes(times + 1)
     }
 
     const handleChangeRating = (event) => {
@@ -41,10 +43,14 @@ function SearchForm() {
                 <option disabled>Rating type</option>
                 {
                     RATINGS.map(rating => (
-                        <option key={rating} value={rating}>{rating}</option>
+                        <option key={rating}>{rating}</option>
                     ))
                 }
             </select>
+
+            <small>
+                {times}
+            </small>
 
         </form>
     )

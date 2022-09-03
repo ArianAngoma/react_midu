@@ -1,13 +1,13 @@
 import {Helmet} from "react-helmet";
 
 import {useGifs} from "hooks/useGifs";
-import {ListOfGifs} from "components/ListOfGifs";
+import ListOfGifs from "components/ListOfGifs";
 import {LazyTrending} from "components/TrendingSearches";
 import SearchForm from "components/SearchForm";
 
 export default function Home() {
 
-    const {loading, gifs} = useGifs();
+    const {gifs} = useGifs();
 
     return (
         <>

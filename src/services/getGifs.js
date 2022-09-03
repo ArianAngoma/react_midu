@@ -4,7 +4,7 @@ export const getGifs = async ({
                                   limit = 20,
                                   keyword = 'morty',
                                   page = 0,
-                                  rating
+                                  rating = 'g'
                               } = {}) => {
 
     const apiURL = `${API_URL}/gifs/search?api_key=${API_KEY}=${keyword}&limit=${limit}&offset=${page * limit}&rating=${rating}&lang=en`;
