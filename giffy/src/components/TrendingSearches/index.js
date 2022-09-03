@@ -1,6 +1,6 @@
 import {lazy, Suspense} from "react";
 import {useNearScreen} from "hooks/useNearScreen";
-import {Spinner} from "../Spinner";
+import {Spinner} from "components/Spinner";
 
 const TrendingSearches = lazy(() => import('./TrendingSearches'));
 

@@ -11,7 +11,7 @@ const TrendingSearches = () => {
 
     return (
         <Category
-            name="Trendings"
+            name="Tendencias"
             options={trends}
         />
     )
