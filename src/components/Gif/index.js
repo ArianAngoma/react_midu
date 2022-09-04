@@ -2,9 +2,16 @@ import {memo} from "react";
 import {Link} from "wouter";
 import './styles.css'
 
+import Fav from "components/Fav";
+
 const Gif = ({title, id, url}) => {
     return (
         <div className="Gif">
+
+            <div className="Gif-buttons">
+                <Fav id={id}/>
+            </div>
+
             <Link
                 to={`/gif/${id}`}
                 className="Gif-link"
