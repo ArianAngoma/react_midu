@@ -2,26 +2,30 @@ import {lazy, Suspense} from "react";
 import {Link, Route, Switch} from "wouter";
 import './App.css';
 
-import {SearchResults} from "./pages/SearchResults";
-import {Detail} from "./pages/Detail";
-import {Context} from "./context/StaticContext";
-import {GifsContextProvider} from "./context/GifsContext";
+import {SearchResults} from "pages/SearchResults";
+import {Detail} from "pages/Detail";
 import ErrorPage from 'pages/ErrorPage';
+import Login from "pages/Login";
+
+import Header from 'components/Header';
+
+import {GifsContextProvider} from 'context/GifsContext'
+import {UserContextProvider} from 'context/UserContext'
 
 const HomePage = lazy(() => import('./pages/Home'));
 
 function App() {
 
     return (
-        <Context.Provider value={{
-            name: 'Arian',
-            isHuman: true,
-        }}>
+
+        <UserContextProvider>
             <div className="App">
 
                 <Suspense fallback={null}>
 
                     <section className="App-content">
+
+                        <Header/>
 
                         <Link to="/">
                             <img
@@ -50,6 +54,11 @@ function App() {
                                 />
 
                                 <Route
+                                    component={Login}
+                                    path={"/login"}
+                                />
+
+                                <Route
                                     component={ErrorPage}
                                     path="/:rest*"
                                 />
@@ -60,8 +69,11 @@ function App() {
                     </section>
 
                 </Suspense>
+
             </div>
-        </Context.Provider>
+
+        </UserContextProvider>
+
     );
 }
 
