@@ -22,6 +22,7 @@ export default function useUser() {
                 setStateLogin({loading: false, error: false});
             })
             .catch((error) => {
+                console.log(error);
                 sessionStorage.removeItem("jwt");
                 setStateLogin({loading: false, error: true});
             })
