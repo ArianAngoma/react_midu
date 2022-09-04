@@ -1,5 +1,6 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useLocation} from "wouter";
+import useUser from "../../hooks/useUser";
 
 export default function Login() {
     const [username, setUsername] = useState('');
@@ -7,31 +8,56 @@ export default function Login() {
 
     const [, navigate] = useLocation();
 
+    const {login, isLogged, isLoginLoading, hasLoginError} = useUser()
+
+    useEffect(() => {
+        if (isLogged) navigate('/')
+    }, [isLogged, navigate])
+
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        navigate('/');
+        login({username, password})
     }
 
+    if (isLoginLoading) return <p>Loading...</p>
+
     return (
-        <form onSubmit={handleSubmit}>
+        <>
+            <h2>Login</h2>
 
-            <input
-                placeholder="username"
-                type="text"
-                value={username}
-                onChange={(event) => setUsername(event.target.value)}
-            />
+            {
+                isLoginLoading && <strong>Checking credentials...</strong>
+            }
 
-            <input
-                placeholder="password"
-                type="password"
-                value={password}
-                onChange={(event) => setPassword(event.target.value)}
-            />
+            {
+                !isLoginLoading && (
+                    <form onSubmit={handleSubmit}>
 
-            <button>Login</button>
+                        <input
+                            placeholder="username"
+                            type="text"
+                            value={username}
+                            onChange={(event) => setUsername(event.target.value)}
+                        />
 
-        </form>
+                        <input
+                            placeholder="password"
+                            type="password"
+                            value={password}
+                            onChange={(event) => setPassword(event.target.value)}
+                        />
+
+                        <button>Login</button>
+
+                    </form>
+                )
+            }
+
+            {
+                hasLoginError && <strong>Invalid credentials</strong>
+            }
+
+        </>
     )
 }

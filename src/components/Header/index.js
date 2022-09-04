@@ -2,8 +2,14 @@ import {Link} from "wouter";
 
 import './styles.css'
 
+import useUser from "hooks/useUser";
+
 export default function Header() {
-    const isLogged = false;
+    const {isLogged, logout} = useUser();
+
+    const handleLogout = () => {
+        logout()
+    }
 
     return (
         <header className="gf-header">
@@ -11,7 +17,7 @@ export default function Header() {
             {
 
                 isLogged ?
-                    <Link to="/logout">Logout</Link> :
+                    <button onClick={handleLogout}>Logout</button> :
                     <Link to="/login">Login</Link>
 
             }
