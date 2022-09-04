@@ -17,10 +17,12 @@ export default function useUser() {
 
         loginService({username, password})
             .then((jwt) => {
-                setStateLogin({loading: false, error: false});
+                sessionStorage.setItem("jwt", jwt);
                 setJwt(jwt)
+                setStateLogin({loading: false, error: false});
             })
             .catch((error) => {
+                sessionStorage.removeItem("jwt");
                 setStateLogin({loading: false, error: true});
             })
     }, [setJwt]);
