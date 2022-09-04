@@ -1,11 +1,12 @@
 import {lazy, Suspense} from "react";
-import {Link, Route} from "wouter";
+import {Link, Route, Switch} from "wouter";
 import './App.css';
 
 import {SearchResults} from "./pages/SearchResults";
 import {Detail} from "./pages/Detail";
 import {Context} from "./context/StaticContext";
 import {GifsContextProvider} from "./context/GifsContext";
+import ErrorPage from 'pages/ErrorPage';
 
 const HomePage = lazy(() => import('./pages/Home'));
 
@@ -31,26 +32,28 @@ function App() {
                         </Link>
 
                         <GifsContextProvider>
+                            <Switch>
 
-                            <Route
-                                component={HomePage}
-                                path="/"
-                            />
+                                <Route
+                                    component={HomePage}
+                                    path="/"
+                                />
 
-                            <Route
-                                component={SearchResults}
-                                path="/search/:keyword/:rating?"
-                            />
+                                <Route
+                                    component={SearchResults}
+                                    path="/search/:keyword/:rating?"
+                                />
 
-                            <Route
-                                component={Detail}
-                                path="/gif/:id"
-                            />
+                                <Route
+                                    component={Detail}
+                                    path="/gif/:id"
+                                />
 
-                            <Route
-                                component={() => <h1>404 Error</h1>}
-                                path="/404"
-                            />
+                                <Route
+                                    component={ErrorPage}
+                                    path="/:rest*"
+                                />
+                            </Switch>
 
                         </GifsContextProvider>
 
