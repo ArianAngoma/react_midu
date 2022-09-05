@@ -18,7 +18,7 @@ export default function Login({onLogin}) {
             navigate('/')
             onLogin && onLogin()
         }
-    }, [isLogged, navigate])
+    }, [isLogged, navigate, onLogin])
 
     const handleSubmit = (event) => {
         event.preventDefault();
