@@ -22,6 +22,10 @@ export default function Fav({id}) {
 
     const [label, emoji] = isFaved ? ['Remove fav', '❤'] : ['Add fav', '🤍️']
 
+    const handleLogin = () => {
+        setShowModal(false)
+    }
+
     return (
         <>
             <button
@@ -34,7 +38,7 @@ export default function Fav({id}) {
             {
                 showModal && (
                     <Modal onClose={handleClose}>
-                        <Login/>
+                        <Login onLogin={handleLogin}/>
                     </Modal>
                 )
             }

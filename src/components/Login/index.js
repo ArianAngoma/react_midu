@@ -5,7 +5,7 @@ import './styles.css';
 
 import useUser from "hooks/useUser";
 
-export default function Login() {
+export default function Login({onLogin}) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
@@ -14,7 +14,10 @@ export default function Login() {
     const {login, isLogged, isLoginLoading, hasLoginError} = useUser()
 
     useEffect(() => {
-        if (isLogged) navigate('/')
+        if (isLogged) {
+            navigate('/')
+            onLogin && onLogin()
+        }
     }, [isLogged, navigate])
 
     const handleSubmit = (event) => {
