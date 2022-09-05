@@ -5,7 +5,6 @@ import useUser from "hooks/useUser";
 import Modal from "components/Modal";
 import Login from "components/Login";
 
-
 export default function Fav({id}) {
     const {isLogged, addFav, favs} = useUser()
 
